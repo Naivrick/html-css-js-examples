@@ -1,0 +1,27 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+#draggable{
+    width: 100px;
+    height: 100px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    line-height: 100px;
+    cursor: move;
+
+}
+
+#dropzone{
+    width: 200px;
+    height: 200px;
+    border: 1px dashed #000;
+    background-color:#f0f0f0;
+}
