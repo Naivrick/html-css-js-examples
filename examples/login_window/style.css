@@ -1,0 +1,87 @@
+html {
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body {
+  margin: 0;
+  padding: 0 0;
+  background-color: #f1f5f9;
+}
+
+main {
+  padding: 0 20px;
+  margin-top: 50%;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: -5px 5px 20px 7px rgba(0, 0, 0, 0.3);
+  width: 350px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+h3 {
+  text-align: center;
+  font-size: 200%;
+  margin-bottom: 0px;
+}
+
+input {
+  text-align: center;
+  height: 10%;
+  box-shadow: inset #abacaf 0 0 0 2px;
+  border: 0;
+  background: rgba(0, 0, 0, 0);
+  appearance: none;
+  width: 100%;
+  position: relative;
+  border-radius: 5px;
+  line-height: 1.4;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  font-weight: 400;
+  transition: all 0.2s ease;
+}
+
+input::placeholder {
+  color: rgba(0, 0, 0, 0.1);
+}
+
+input:hover {
+  box-shadow: 0 0 0 0 #fff inset, #322e81 0 0 0 2px;
+}
+
+input:focus {
+  background: #ebeafd;
+  outline: 0;
+  box-shadow: 0 0 0 0 #fff inset, #322e81 0 0 0 3px;
+}
+
+h5 {
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #636363;
+}
+
+button {
+  margin: 30px 0;
+  color: #f1f5f9;
+  font-size: 18px;
+  border-radius: 10px;
+  height: 15%;
+  background-color: #322e81;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  font-size: 20px;
+  box-shadow: 0 0 0 0 #fff inset, #322e81 0 0 0 2px;
+}
