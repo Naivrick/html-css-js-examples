@@ -1,0 +1,106 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: lightcyan;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 10vw;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+h3{
+    padding: 10px;
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+}
+
+.drop_zone{
+    width: 600px;
+    height: 500px;
+    border: 1px dashed #000;
+    border-radius: 10px;
+    background-color:#f0f0f0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    /* width: 65%; */
+    /* background-color: #2f1d58; */
+    /* height: 80vh; */
+    /* overflow: auto; */
+    /* flex-direction: row; */
+}
+
+.drop_item{
+    width: 150px;
+    height: 150px;
+    border-radius: 2px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    cursor: grab;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.dragging{
+    cursor: grabbing;
+}
+
+.drag_entered{
+    border: 1px dashed #002b12;
+}
+
+.no-select {
+    -webkit-user-select: none; /* Chrome/Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE/Edge */
+    user-select: none; /* Стандартный синтаксис */
+}
+
+/* .available_images{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+} */
+
+.button_add_image{
+    width: 250px;
+    height: 50px;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 10px;
+}
+.button_add_image:hover{
+    background-color: #45a049;
+}
+.button_add_image:active{
+    background-color: #3e8e41;
+}
+.button_add_image:focus{
+    outline: none;
+}
+.button_add_image:focus-visible{
+    outline: 2px solid #4CAF50;
+    outline-offset: 2px;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My gallery</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="available_images">
+                <h3 class="no-select">Доступные изображения</h3>
+
+                <div class="drop_zone">
+                    <img
+                        class="drop_item"
+                        draggable="true"
+                        src="https://picsum.photos/200/300?random=1"
+                        alt="No image"
+                    />
+                    <img
+                        class="drop_item"
+                        draggable="true"
+                        src="https://picsum.photos/200/300?random=2"
+                        alt="No image"
+                    />
+                    <img
+                        class="drop_item"
+                        draggable="true"
+                        src="https://picsum.photos/200/300?random=3"
+                        alt="No image"
+                    />
+                </div>
+            </div>
+            <div class="my_images no-select">
+                <h3>Моя галерея</h3>
+                <div class="drop_zone"></div>
+            </div>
+        </div>
+
+        <button class="button_add_image" type="button">
+            Добавить изображение
+        </button>
+
+        <script src="main.js"></script>
+    </body>
+</html>
