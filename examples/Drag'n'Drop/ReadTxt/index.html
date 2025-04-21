@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h2>Перетащите текстовый файл в эту область</h2>
+            <div class="drag_field" id="drag_field">
+                <input type="file" id="file-input" multiple hidden />
+                <p>Перетащите файл сюда</p>
+            </div>
+            <textarea name="file_content" id="file_content">
+                Содержимое файла будет отображаться здесь 😊
+            </textarea>
+        </div>
+        <script src="main.js"></script>
+    </body>
+</html>

@@ -1,0 +1,59 @@
+:root {
+    --color-primary: #235ad1;
+    --width-window: 80%;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+h2{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.drag_field{
+    width: var(--width-window);
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+}
+
+.drag_field p {
+    line-height: 200px; /* Пример высоты */
+    text-align: center;
+    font-size: 20px;
+    color: #999;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    cursor: pointer;
+    user-select: none;
+
+}
+
+#file_content{
+    width: var(--width-window);
+    height: 90%;
+    margin-bottom: 10px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+}
+
+textarea {
+    resize: none;
+}
