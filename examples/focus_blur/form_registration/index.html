@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Blur and focus Example</title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Редактирование профиля</h1>
+            <div class="form-group">
+                <label for="name">Имя</label>
+                <input
+                    type="text"
+                    name=""
+                    id="name"
+                    placeholder="Введите ваше имя:"
+                />
+                <div class="instruction">Введите ваше полное имя.</div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                    type="email"
+                    name=""
+                    id="email"
+                    placeholder="Введите ваш email:"
+                />
+                <div class="instruction">
+                    Введите корректный адрес электронной почты.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input
+                    type="password"
+                    name=""
+                    id="password"
+                    placeholder="Введите ваш пароль:"
+                />
+                <div class="instruction">
+                    Пароль должен содержать как минимум 8 символов.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="confirm">Повторите пароль</label>
+                <input
+                    type="password"
+                    name=""
+                    id="confirm"
+                    placeholder="Введите ваш пароль еще раз:"
+                />
+                <div class="instruction">Пароль должен совпадать.</div>
+            </div>
+            <button type="button">Сохранить</button>
+        </div>
+        <script src="main.js"></script>
+    </body>
+</html>
