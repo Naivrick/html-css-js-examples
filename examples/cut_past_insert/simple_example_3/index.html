@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cut, Copy, Paste Example</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+            textarea {
+                width: 100%;
+                height: 100px;
+                margin-bottom: 20px;
+            }
+            .log {
+                margin-bottom: 10px;
+                padding: 10px;
+                border: 1px solid #ccc;
+                background-color: #f9f9f9;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Cut, Copy, Paste Example</h1>
+        <textarea id="textArea" placeholder="Type something here..."></textarea>
+
+        <div id="cutLog" class="log">Cut Log:</div>
+        <div id="copyLog" class="log">Copy Log:</div>
+        <div id="pasteLog" class="log">Paste Log:</div>
+
+        <script>
+            const textArea = document.getElementById("textArea");
+            const cutLog = document.getElementById("cutLog");
+            const copyLog = document.getElementById("copyLog");
+            const pasteLog = document.getElementById("pasteLog");
+
+            textArea.addEventListener("cut", (event) => {
+                const cutText = window.getSelection().toString();
+                cutLog.textContent = `Cut Log: ${cutText}`;
+            });
+
+            textArea.addEventListener("copy", (event) => {
+                const copiedText = window.getSelection().toString();
+                copyLog.textContent = `Copy Log: ${copiedText}`;
+            });
+
+            textArea.addEventListener("paste", (event) => {
+                event.preventDefault();
+                const pastedText = event.clipboardData.getData("text");
+                pasteLog.textContent = `Paste Log: ${pastedText}`;
+                const cursorPosition = textArea.selectionStart;
+                const textBefore = textArea.value.substring(0, cursorPosition);
+                const textAfter = textArea.value.substring(cursorPosition);
+                textArea.value = textBefore + pastedText + textAfter;
+            });
+        </script>
+    </body>
+</html>

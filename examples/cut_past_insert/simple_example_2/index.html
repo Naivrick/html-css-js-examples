@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <input type="text" class="text" />
+        <select class="select">
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+        </select>
+        <p>Текстовое поле: <span class="input-text"> </span></p>
+        <p>Выбранное значение: <span class="select-chose"> </span></p>
+        <button class="btn">clear</button>
+        <script>
+            const input = document.querySelector(".text");
+            const select = document.querySelector(".select");
+            const inputText = document.querySelector(".input-text");
+            const selectChose = document.querySelector(".select-chose");
+            const btn = document.querySelector(".btn");
+
+            input.addEventListener("input", (e) => {
+                inputText.innerHTML = e.target.value;
+            });
+
+            select.addEventListener("change", (e) => {
+                selectChose.innerHTML = e.target.value;
+            });
+
+            btn.addEventListener("click", () => {
+                input.value = "";
+                select.value = "1";
+                inputText.innerHTML = "";
+                selectChose.innerHTML = "";
+            });
+        </script>
+    </body>
+</html>
