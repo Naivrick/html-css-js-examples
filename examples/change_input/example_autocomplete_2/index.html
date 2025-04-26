@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Демо автокомплита с IndexedDB</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 2em;
+                background: #f4f4f4;
+            }
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                background: #fff;
+                padding: 1.5em;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            h2 {
+                text-align: center;
+            }
+            input[type="text"] {
+                width: 100%;
+                padding: 10px;
+                font-size: 1em;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                margin-bottom: 1em;
+            }
+            ul#suggestions-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                max-height: 200px;
+                overflow-y: auto;
+            }
+            ul#suggestions-list li {
+                padding: 10px;
+                border-bottom: 1px solid #eee;
+                cursor: pointer;
+            }
+            ul#suggestions-list li:last-child {
+                border-bottom: none;
+            }
+            ul#suggestions-list li:hover {
+                background: #f0f0f0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Автокомплит с IndexedDB</h2>
+            <input
+                type="text"
+                id="autocomplete-input"
+                placeholder="Начните вводить название улицы..."
+            />
+            <ul id="suggestions-list"></ul>
+        </div>
+
+        <script>
+            // Открытие / создание базы данных
+            const request = indexedDB.open("RealEstateDB", 1);
+
+            request.onupgradeneeded = function (event) {
+                const db = event.target.result;
+                // Создаем хранилище с уникальным автоинкрементным ключом
+                const store = db.createObjectStore("houses", {
+                    keyPath: "id",
+                    autoIncrement: true,
+                });
+
+                // Создаем индекс для поля 'street', не уникальный
+                store.createIndex("street_idx", "street", { unique: false });
+            };
+
+            request.onerror = function (event) {
+                console.error("Ошибка открытия базы:", event.target.error);
+            };
+
+            request.onsuccess = function (event) {
+                const db = event.target.result;
+                console.log("База данных успешно открыта");
+
+                // Если база пустая, можно добавить образцовые данные один раз
+                addSampleData(db);
+
+                // Обработка ввода пользователя
+                const inputField =
+                    document.getElementById("autocomplete-input");
+                inputField.addEventListener("input", function (event) {
+                    const query = event.target.value.trim();
+                    if (query.length === 0) {
+                        clearSuggestions();
+                    } else {
+                        searchAutocomplete(db, query);
+                    }
+                });
+            };
+
+            // Функция для поиска автодополнения по префиксу
+            function searchAutocomplete(db, prefix) {
+                const transaction = db.transaction("houses", "readonly");
+                const store = transaction.objectStore("houses");
+                const index = store.index("street_idx");
+
+                // Определяем диапазон для поиска
+                const lowerBound = prefix;
+                const upperBound = prefix + "\uffff";
+                const range = IDBKeyRange.bound(
+                    lowerBound,
+                    upperBound,
+                    false,
+                    false
+                );
+
+                const suggestions = [];
+                index.openCursor(range).onsuccess = function (event) {
+                    const cursor = event.target.result;
+                    if (cursor) {
+                        suggestions.push(cursor.value);
+                        cursor.continue();
+                    } else {
+                        renderSuggestions(suggestions);
+                    }
+                };
+            }
+
+            // Функция отрисовки подсказок
+            function renderSuggestions(suggestions) {
+                const listElement = document.getElementById("suggestions-list");
+                listElement.innerHTML = ""; // сброс текущих подсказок
+
+                if (suggestions.length === 0) {
+                    const li = document.createElement("li");
+                    li.textContent = "Нет результатов";
+                    listElement.appendChild(li);
+                } else {
+                    suggestions.forEach((item) => {
+                        const li = document.createElement("li");
+                        li.textContent = `${item.street}, дом ${item.house} — ${item.hospital}`;
+                        li.addEventListener("click", function () {
+                            // При клике можно, например, заполнить поле или выполнить другое действие
+                            document.getElementById(
+                                "autocomplete-input"
+                            ).value = item.street;
+                            clearSuggestions();
+                        });
+                        listElement.appendChild(li);
+                    });
+                }
+            }
+
+            // Функция очистки подсказок
+            function clearSuggestions() {
+                const listElement = document.getElementById("suggestions-list");
+                listElement.innerHTML = "";
+            }
+
+            // Функция добавления образцовых данных (однократно)
+            function addSampleData(db) {
+                const transaction = db.transaction("houses", "readwrite");
+                const store = transaction.objectStore("houses");
+
+                // Пример данных. Перед добавлением можно проверить, есть ли уже данные, чтобы не дублировать.
+                const data = [
+                    {
+                        street: "ул. Ленина",
+                        house: "1",
+                        hospital: "Больница №1",
+                    },
+                    {
+                        street: "ул. Ленина",
+                        house: "2",
+                        hospital: "Больница №2",
+                    },
+                    {
+                        street: "ул. Лермонтова",
+                        house: "10",
+                        hospital: "Больница №3",
+                    },
+                    {
+                        street: "ул. Летняя",
+                        house: "15",
+                        hospital: "Больница №1",
+                    },
+                    {
+                        street: "ул. Лесная",
+                        house: "5",
+                        hospital: "Больница №4",
+                    },
+                    {
+                        street: "ул. Лондонская",
+                        house: "20",
+                        hospital: "Больница №5",
+                    },
+                ];
+
+                // Примечание: чтобы избежать дублирования данных при каждом обновлении страницы,
+                // можно добавить дополнительную проверку или добавить данные один раз.
+                data.forEach((item) => {
+                    store.add(item);
+                });
+
+                transaction.oncomplete = function () {
+                    console.log("Образцовые данные успешно добавлены");
+                };
+
+                transaction.onerror = function (event) {
+                    console.error(
+                        "Ошибка добавления данных:",
+                        event.target.error
+                    );
+                };
+            }
+        </script>
+    </body>
+</html>
