@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <form class="check_age">
+            <p>Возраст:</p>
+            <br />
+            <input type="text" name="age" id="age" />
+            <br />
+            <input type="submit" value="Проверить" />
+            <br />
+        </form>
+        <p id="output">Здесь результат проверки:</p>
+        <script>
+            const form_age = document.querySelector(".check_age");
+            const output = document.querySelector("#output");
+
+            form_age.addEventListener("submit", (event) => {
+                event.preventDefault(); // Отменяем стандартное поведение формы
+
+                let age = document.querySelector("#age").value;
+
+                if (!age) {
+                    output.textContent = "Вы не ввели возраст!";
+                } else if (age < 19) {
+                    output.textContent = "Вы слишком молоды!";
+                } else if (age > 60) {
+                    output.textContent = "Вы слишком стары!";
+                } else {
+                    output.textContent = "Вы в самом расцвете сил!";
+                }
+            });
+        </script>
+    </body>
+</html>
+1
