@@ -1,0 +1,47 @@
+.card-container {
+    perspective: 1000px; /* Угол обзора для 3D эффекта */
+    margin-top: 50px;
+    display: flex; /* Добавлено для центрирования */
+    justify-content: center; /* Центрирование по горизонтали */
+    align-items: center; /* Центрирование по вертикали */
+    height: 100vh; /* Занимает всю высоту экрана */
+}
+
+.card {
+    width: 200px;
+    height: 300px;
+    position: relative;
+    transform-style: preserve-3d; /* Сохраняет 3D эффект для дочерних элементов */
+    transition: transform 1s; /* Плавный переход при вращении */
+    cursor: pointer; /* Указывает, что элемент кликабельный */
+}
+
+.card:hover {
+    transform: rotateY(180deg); /* Вращение при наведении */
+}
+
+.card-face {
+    position: absolute;
+    width: 60%;
+    height: 60%;
+    backface-visibility: hidden; /* Скрывает обратную сторону */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border: 1px solid #ccc; /* Добавлена рамка для визуального улучшения */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для объема */
+    border-radius: 8px; /* Скругленные углы */
+}
+
+.front {
+    transform: rotateY(0deg); /* Лицевая сторона */
+}
+
+.back {
+    transform: rotateY(180deg); /* Обратная сторона */
+    background: #007bff; /* Цвет обратной стороны */
+    color: white; /* Цвет текста на обратной стороне */
+    font-size: 20px; /* Размер текста */
+    font-weight: bold; /* Жирный текст */
+}

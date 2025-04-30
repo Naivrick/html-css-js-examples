@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Магазин техники</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="card-container">
+            <div class="card">
+                <div class="card-face front">
+                    <h2>
+                        <img
+                            src="images/Xiaomi 15 Ultra front.webp"
+                            alt="Xiaomi 15 Ultra front"
+                        />
+                    </h2>
+                </div>
+                <div class="card-face back">
+                    <h2>
+                        <img
+                            src="images/Xiaomi 15 Ultra back.webp"
+                            alt="Xiaomi 15 Ultra back"
+                        />
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <script>
+            document
+                .querySelector(".card-container")
+                .addEventListener("mouseenter", function () {
+                    document.querySelector(".card").style.transform =
+                        "rotateY(180deg)";
+                });
+            document
+                .querySelector(".card-container")
+                .addEventListener("mouseleave", function () {
+                    document.querySelector(".card").style.transform =
+                        "rotateY(0deg)";
+                });
+        </script>
+    </body>
+</html>
